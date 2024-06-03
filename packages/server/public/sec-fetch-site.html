@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>sec-fetch-site</h1>
+  <p>
+    sec-fetch-site为 forbidden header。无法用`js`修改，服务器可以通过此值判断是否为跨域。<a
+      href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Sec-Fetch-Site" target="_blank">文档</a>
+  </p>
+  <p>
+    打开 network 查看 sec-fetch-site 请求头。
+  </p>
+
+  <button id="btn1">port 3000</button>
+  <button id="btn2">port 3001</button>
+  <button id="btn3">baidu</button>
+
+  <section>
+    当前Url为 localhost:3000
+    <p>发送请求到 port 3000时，sec-fetch-site为 same-origin</p>
+    <p>发送到 3001时，sec-fetch-site为 same-site</p>
+    <p>发送到 百度时，sec-fetch-site为 cross-site</p>
+  </section>
+
+  <script>
+    const bnt1 = document.querySelector('#btn1')
+    const bnt2 = document.querySelector('#btn2')
+    const bnt3 = document.querySelector('#btn3')
+    bnt1.addEventListener('click', () => {
+      fetch('http://localhost:3000/sec-fetch-site')
+    })
+    bnt2.addEventListener('click', () => {
+      fetch('http://localhost:3001/sec-fetch-site')
+    })
+    bnt3.addEventListener('click', () => {
+      fetch('https://www.baidu.com/aa')
+    })
+  </script>
+</body>
+
+</html>
